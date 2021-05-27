@@ -1,0 +1,10 @@
+FROM registry.redhat.io/rh-sso-7/sso74-openshift-rhel8:latest
+
+COPY magic-link/target/magic-link.jar /opt/eap/standalone/deployments/
+RUN touch /opt/eap/standalone/deployments/magic-link.jar.dodeploy
+
+COPY themes/target/themes.jar /opt/eap/standalone/deployments/
+RUN touch /opt/eap/standalone/deployments/themes.jar.dodeploy
+
+COPY token-validation/target/token-validation.jar /opt/eap/standalone/deployments/
+RUN touch /opt/eap/standalone/deployments/token-validation.jar.dodeploy

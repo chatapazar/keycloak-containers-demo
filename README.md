@@ -14,6 +14,23 @@ To make it easy to connect Keycloak to LDAP and the mail server create a user de
 
     docker network create demo-network
 
+### Start RH-SSO
+
+We're going to use an extended Keycloak image that includes a custom theme and some custom providers.
+
+First, build the custom providers and themes with:
+
+    mvn clean install
+
+Then build the image with:
+    
+    docker build -t demo-keycloak-rh -f keycloak/Dockerfile.sso .
+
+Finally run it with:
+
+    docker run --name demo-keycloak -e SSO_ADMIN_PASSWORD=admin -e SSO_ADMIN_USERNAME=admin \
+        -p 8080:8080 --net demo-network demo-keycloak-rh
+
 ### Start Keycloak
 
 We're going to use an extended Keycloak image that includes a custom theme and some custom providers.
@@ -24,12 +41,12 @@ First, build the custom providers and themes with:
 
 Then build the image with:
     
-    docker build -t demo-keycloak -f keycloak/Dockerfile .
+    docker build -t demo-keycloak-oss -f keycloak/Dockerfile .
 
 Finally run it with:
 
     docker run --name demo-keycloak -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin \
-        -p 8080:8080 --net demo-network demo-keycloak
+        -p 8080:8080 --net demo-network demo-keycloak-oss
 
 ### Start LDAP server
 
@@ -256,7 +273,8 @@ drop-down.
 Fill in the following values:
 
 * Edit Mode: `WRITABLE`
-* Vendor: `other`
+* Vendor: `other` or `Red Hat Directory Server`
+* UUID LDAP attribute: `entryUUID`
 * Connection URL: `ldap://demo-ldap:389`
 * Users DN: `ou=People,dc=example,dc=org`
 * Bind DN: `cn=admin,dc=example,dc=org`
