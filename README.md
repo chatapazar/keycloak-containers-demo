@@ -308,8 +308,8 @@ In a new tab open [Register a new OAuth application](https://github.com/settings
 Fill in the following values:
 
 * Application name: Keycloak
-* Homepage URL: <Redirect URI from Keycloak Admin Console>
-* Authorization callback URL: <Redirect URI from Keycloak Admin Console>
+* Homepage URL: <Redirect URI from Keycloak Admin Console> --> http://localhost:8000
+* Authorization callback URL: <Redirect URI from Keycloak Admin Console> --> http://localhost:8080/auth/realms/demo/broker/github/endpoint
 
 Now copy the value for `Client ID` and `Client Secret` from GitHub to the Keycloak
 Admin Console.
