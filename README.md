@@ -295,6 +295,8 @@ Now that we have users in Keycloak as well as loading users from LDAP let's get 
 from an external Identity Provider. For simplicity we'll use GitHub, but the same 
 approach works for a corporate identity provider and other social networks.
 
+github.com --> setting --> developer setting --> oauth apps --> keycloak
+
 Open the [Keycloak Admin Console](http://localhost:8080/auth/admin/). 
 
 Click on `Identity Providers`. From the drop-down select `GitHub`. Copy the value 
